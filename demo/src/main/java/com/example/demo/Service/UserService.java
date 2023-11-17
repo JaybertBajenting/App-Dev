@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -64,6 +65,32 @@ public class UserService {
         }
         return null;
     }
+
+
+    public void uploadPicture(int id, MultipartFile picture){
+     try{
+         UserEntity currentUser = this.userRepository.findById(id).get();
+         currentUser.setProfilePicture(picture.getBytes());
+         this.userRepository.save(currentUser);
+         System.out.println("Successfully Uploaded a Picture");
+     }catch(Exception e){
+         System.out.println(e);
+     }
+    }
+
+
+    public byte[] getProfilePicture(int id){
+        UserEntity currentUser = this.userRepository.findById(id).get();
+        return currentUser.getProfilePicture();
+    }
+
+
+
+
+
+
+
+
 
 
 

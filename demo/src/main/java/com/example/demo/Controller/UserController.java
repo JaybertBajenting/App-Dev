@@ -7,6 +7,7 @@ import com.example.demo.Service.UserService;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -58,10 +59,32 @@ public class UserController {
 
 
 
+
+
+
+
     @PostMapping("getAccountByCredentials/")
     public UserEntity getAccountByCredentials(@RequestParam String email, @RequestParam String password){
         return this.userService.getAccountByCredentials(email,password);
     }
+
+
+
+
+
+
+    @PostMapping("uploadPicture/")
+    public void uploadPicture(@RequestParam("id") int id, @RequestParam("file") MultipartFile picture){
+        this.userService.uploadPicture(id,picture);
+    }
+
+
+    @GetMapping("getProfilePicture/")
+    public byte[] getProfilePictre(@RequestParam int id){
+        return this.userService.getProfilePicture(id);
+    }
+
+
 
 
 

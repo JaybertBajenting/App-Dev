@@ -42,21 +42,21 @@ public class UserEntity {
     private String password;
 
 
-    public String getUserRole() {
-        return userRole;
-    }
 
-    public void setUserRole(String userRole) {
-        this.userRole = userRole;
-    }
 
     @Column(name = "user_Role")
     private String userRole = "Student";
 
 
+
+
+
+
     public UserEntity(){
 
     }
+
+
 
 
 
@@ -73,6 +73,14 @@ public class UserEntity {
         this.password = password;
     }
 
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
+    }
 
     public int getId() {
         return id;
