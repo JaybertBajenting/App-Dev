@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("accounts")
+@RequestMapping("account")
 @CrossOrigin(origins = "*")
+
 
 public class UserController {
 
@@ -27,22 +28,51 @@ public class UserController {
 
 
 
+
     @PostMapping("/createAccount")
     public Student createAccount(@RequestBody Student student){
      return this.userService.makeAccount(student);
     }
 
 
-
-
-
-
-
-
     @GetMapping("/getAccounts")
     public List<UserEntity> getAccounts() {
         return this.userService.getAccounts();
     }
+
+
+
+    @DeleteMapping("/deleteAccount/{id}")
+    public String deleteAccount(@PathVariable  int id){
+        return this.userService.deleteUser(id);
+    }
+
+
+
+
+    @GetMapping("getAccountById/")
+    public UserEntity getAccountById(@RequestParam int id){
+        return this.userService.getAccountById(id);
+    }
+
+
+
+
+    @PostMapping("getAccountByCredentials/")
+    public UserEntity getAccountByCredentials(@RequestParam String email, @RequestParam String password){
+        return this.userService.getAccountByCredentials(email,password);
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

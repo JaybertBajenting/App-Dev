@@ -5,6 +5,7 @@ import com.example.demo.Entity.UserEntity;
 import com.example.demo.Repository.UserRepository;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -28,9 +29,40 @@ public class UserService {
     }
 
 
-
     public List<UserEntity> getAccounts(){
         return this.userRepository.findAll();
+    }
+
+
+
+    public String deleteUser(int id){
+            if(this.userRepository.existsById(id)){
+                this.userRepository.deleteById(id);
+                return "Account has been Deleted";
+            }
+
+            return "Account not Found";
+    }
+
+
+    public UserEntity getAccountByCredentials(String email, String password){
+
+        List<UserEntity> accounts = this.userRepository.findAll();
+
+        for(UserEntity account:accounts){
+            if(account.getEmail().equals(email) && account.getPassword().equals(password)) return account;
+        }
+
+
+        return null;
+    }
+
+
+    public UserEntity getAccountById(int id){
+        if(this.userRepository.existsById(id)){
+            return this.userRepository.findById(id).get();
+        }
+        return null;
     }
 
 
