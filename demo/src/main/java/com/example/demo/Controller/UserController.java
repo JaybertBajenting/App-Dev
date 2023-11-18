@@ -60,9 +60,6 @@ public class UserController {
 
 
 
-
-
-
     @PostMapping("getAccountByCredentials/")
     public UserEntity getAccountByCredentials(@RequestParam String email, @RequestParam String password){
         return this.userService.getAccountByCredentials(email,password);
@@ -83,6 +80,17 @@ public class UserController {
     public byte[] getProfilePictre(@RequestParam int id){
         return this.userService.getProfilePicture(id);
     }
+
+
+
+
+    @PutMapping("updateAccount")
+    public UserEntity updateAccount(@RequestParam("id") int id,@RequestBody UserEntity userEntity){
+    return this.userService.updateAccount(id,userEntity);
+    }
+
+
+
 
 
 

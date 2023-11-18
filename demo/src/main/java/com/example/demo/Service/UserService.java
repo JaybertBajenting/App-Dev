@@ -88,6 +88,17 @@ public class UserService {
 
 
 
+    public UserEntity updateAccount(int id, UserEntity userEntity){
+            UserEntity user = this.userRepository.findById(id).get();
+            user.setFirstName(userEntity.getFirstName());
+            user.setLastName(userEntity.getLastName());
+            user.setIdNumber(userEntity.getIdNumber());
+            user.setEmail(userEntity.getEmail());
+            return this.userRepository.save(user);
+    }
+
+
+
 
 
 
