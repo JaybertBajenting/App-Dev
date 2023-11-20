@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("account")
@@ -61,8 +62,10 @@ public class UserController {
 
 
     @PostMapping("getAccountByCredentials/")
-    public UserEntity getAccountByCredentials(@RequestParam String email, @RequestParam String password){
-        return this.userService.getAccountByCredentials(email,password);
+    public UserEntity getAccountByCredentials(@RequestBody Map<String, String> credentials) {
+        String email = credentials.get("email");
+        String password = credentials.get("password");
+        return this.userService.getAccountByCredentials(email, password);
     }
 
 
@@ -80,6 +83,11 @@ public class UserController {
     public byte[] getProfilePictre(@RequestParam int id){
         return this.userService.getProfilePicture(id);
     }
+
+
+
+
+
 
 
 

@@ -54,7 +54,6 @@ public class UserService {
             if(account.getEmail().equals(email) && account.getPassword().equals(password)) return account;
         }
 
-
         return null;
     }
 
@@ -94,8 +93,11 @@ public class UserService {
             user.setLastName(userEntity.getLastName());
             user.setIdNumber(userEntity.getIdNumber());
             user.setEmail(userEntity.getEmail());
+            user.setProfilePicture(userEntity.getProfilePicture());
             return this.userRepository.save(user);
     }
+
+
 
 
 
