@@ -58,9 +58,6 @@ public class UserController {
     }
 
 
-
-
-
     @PostMapping("getAccountByCredentials/")
     public UserEntity getAccountByCredentials(@RequestBody Map<String, String> credentials) {
         String email = credentials.get("email");
@@ -100,14 +97,11 @@ public class UserController {
 
 
 
-
-
-
-
-
-
-
-
+    @PutMapping("updateUserRole/")
+    public void updateUserRole(@RequestParam("id") int id, @RequestParam("userRole") String userRole)
+    {
+        this.userService.updateUserRole(id,userRole);
+    }
 
 
 

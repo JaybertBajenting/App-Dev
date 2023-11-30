@@ -99,7 +99,15 @@ public class UserService {
 
 
 
-
+    public void updateUserRole(int id, String userRole){
+        try{ UserEntity currentUser = this.userRepository.findById(id).get();
+            currentUser.setUserRole(userRole);
+            this.userRepository.save(currentUser);
+        System.out.println("Successfully Updated User Role"); }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }
 
 
 
