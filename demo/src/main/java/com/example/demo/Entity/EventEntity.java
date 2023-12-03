@@ -7,7 +7,6 @@ import java.util.Date;
 
 @Entity
 @Table(name = "tbl_event")
-
 public class EventEntity {
 
 
@@ -44,37 +43,28 @@ public class EventEntity {
 
 
 
-    @Column(name = "organizer_Id")
-    private int organizerId;
+   @JoinColumn(name = "user_id")
+    private UserEntity organizer;
 
 
-
-
-
-
-    public EventEntity(int id, String eventName, String eventDescription, Date eventStarts, Date eventEnds, byte[] eventPicture
-    , int organizerId) {
+    public EventEntity(int id, String eventName, String eventDescription, Date eventStarts, Date eventEnds, byte[] eventPicture, UserEntity organizer) {
         this.id = id;
         this.eventName = eventName;
         this.eventDescription = eventDescription;
         this.eventStarts = eventStarts;
         this.eventEnds = eventEnds;
         this.eventPicture = eventPicture;
-        this.organizerId = organizerId;
+        this.organizer = organizer;
     }
 
-    public EventEntity(String eventName, String eventDescription, Date eventStarts, Date eventEnds, byte[] eventPicture, int organizerId) {
+    public EventEntity(String eventName, String eventDescription, Date eventStarts, Date eventEnds, byte[] eventPicture, UserEntity organizer) {
         this.eventName = eventName;
         this.eventDescription = eventDescription;
         this.eventStarts = eventStarts;
         this.eventEnds = eventEnds;
         this.eventPicture = eventPicture;
-        this.organizerId = organizerId;
+        this.organizer = organizer;
     }
-
-
-
-
     public EventEntity(){
 
     }
@@ -127,12 +117,11 @@ public class EventEntity {
         this.eventPicture = eventPicture;
     }
 
-    public int getOrganizerId() {
-        return organizerId;
+    public UserEntity getOrganizer() {
+        return organizer;
     }
 
-    public void setOrganizerId(int organizerId) {
-        this.organizerId = organizerId;
+    public void setOrganizer(UserEntity organizer) {
+        this.organizer = organizer;
     }
-
 }
