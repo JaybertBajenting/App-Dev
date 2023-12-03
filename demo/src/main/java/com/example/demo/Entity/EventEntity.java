@@ -1,7 +1,6 @@
 package com.example.demo.Entity;
 
 import jakarta.persistence.*;
-import jdk.jfr.Event;
 
 import java.util.Date;
 
@@ -12,11 +11,12 @@ public class EventEntity {
 
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @Column(name = "event_id")
     private int id;
 
 
 
-    @Column(name = "event_Name)")
+    @Column(name = "event_Name")
     private String eventName;
 
 
@@ -43,31 +43,35 @@ public class EventEntity {
 
 
 
-   @JoinColumn(name = "user_id")
-    private UserEntity organizer;
+
+    @Column(name = "organizer_id")
+    private int organizerId;
 
 
-    public EventEntity(int id, String eventName, String eventDescription, Date eventStarts, Date eventEnds, byte[] eventPicture, UserEntity organizer) {
+
+    public EventEntity(int id, String eventName, String eventDescription, Date eventStarts, Date eventEnds, byte[] eventPicture, int organizerId) {
         this.id = id;
         this.eventName = eventName;
         this.eventDescription = eventDescription;
         this.eventStarts = eventStarts;
         this.eventEnds = eventEnds;
         this.eventPicture = eventPicture;
-        this.organizer = organizer;
+        this.organizerId = organizerId;
     }
 
-    public EventEntity(String eventName, String eventDescription, Date eventStarts, Date eventEnds, byte[] eventPicture, UserEntity organizer) {
+    public EventEntity(String eventName, String eventDescription, Date eventStarts, Date eventEnds, byte[] eventPicture, int organizerId) {
         this.eventName = eventName;
         this.eventDescription = eventDescription;
         this.eventStarts = eventStarts;
         this.eventEnds = eventEnds;
         this.eventPicture = eventPicture;
-        this.organizer = organizer;
+        this.organizerId = organizerId;
     }
+
     public EventEntity(){
 
     }
+
 
     public int getId() {
         return id;
@@ -117,11 +121,12 @@ public class EventEntity {
         this.eventPicture = eventPicture;
     }
 
-    public UserEntity getOrganizer() {
-        return organizer;
+    public int getOrganizerId() {
+        return organizerId;
     }
 
-    public void setOrganizer(UserEntity organizer) {
-        this.organizer = organizer;
+    public void setOrganizerId(int organizerId) {
+        this.organizerId = organizerId;
     }
 }
+

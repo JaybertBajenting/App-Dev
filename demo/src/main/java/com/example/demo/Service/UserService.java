@@ -12,6 +12,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
+
+
+
 @Service
 public class UserService {
 
@@ -83,18 +86,30 @@ public class UserService {
         return currentUser.getProfilePicture();
     }
 
-
-
-
-
     public UserEntity updateAccount(int id, UserEntity userEntity){
-            UserEntity user = this.userRepository.findById(id).get();
+        UserEntity user = this.userRepository.findById(id).get();
+
+        if (userEntity.getFirstName() != null && !userEntity.getFirstName().isEmpty()) {
             user.setFirstName(userEntity.getFirstName());
+        }
+
+        if (userEntity.getLastName() != null && !userEntity.getLastName().isEmpty()) {
             user.setLastName(userEntity.getLastName());
+        }
+
+        if (userEntity.getIdNumber() != null && !userEntity.getIdNumber().isEmpty()) {
             user.setIdNumber(userEntity.getIdNumber());
+        }
+
+        if (userEntity.getEmail() != null && !userEntity.getEmail().isEmpty()) {
             user.setEmail(userEntity.getEmail());
+        }
+
+        if (userEntity.getProfilePicture() != null && userEntity.getProfilePicture().length > 0) {
             user.setProfilePicture(userEntity.getProfilePicture());
-            return this.userRepository.save(user);
+        }
+
+        return this.userRepository.save(user);
     }
 
 
@@ -103,16 +118,12 @@ public class UserService {
         try{ UserEntity currentUser = this.userRepository.findById(id).get();
             currentUser.setUserRole(userRole);
             this.userRepository.save(currentUser);
-        System.out.println("Successfully Updated User Role"); }
+        System.out.println("Successfully Updated User Role");
+        }
         catch(Exception e){
             System.out.println(e);
         }
     }
-
-
-
-
-
 
 
 

@@ -2,10 +2,14 @@ package com.example.demo.Service;
 
 import com.example.demo.Entity.EventEntity;
 import com.example.demo.Repository.EventRepository;
+import com.example.demo.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EventService {
@@ -14,17 +18,18 @@ public class EventService {
 
 
     private final EventRepository eventRepository;
+    private final UserRepository userRepository;
 
 
     @Autowired
-    public EventService(EventRepository eventRepository){
+    public EventService(EventRepository eventRepository, UserRepository userRepository){
         this.eventRepository = eventRepository;
+        this.userRepository = userRepository;
     }
 
 
-
     public EventEntity makeEvent(EventEntity eventEntity){
-    return this.eventRepository.save(eventEntity);
+        return this.eventRepository.save(eventEntity);
     }
 
     public String deleteEvent(int id){
@@ -36,21 +41,40 @@ public class EventService {
     }
 
 
+
+
+
+
+
     public EventEntity updateEvent(int id, EventEntity eventEntity){
-        EventEntity newEvent = new EventEntity();
-        try{
+        EventEntity newEvent = this.eventRepository.findById(id).orElse(null);
+
+
+        if (eventEntity.getEventName() != null && !eventEntity.getEventName().isEmpty()) {
             newEvent.setEventName(eventEntity.getEventName());
-            newEvent.setEventDescription(eventEntity.getEventDescription());
-            newEvent.setEventStarts(eventEntity.getEventStarts());
-            newEvent.setEventEnds(eventEntity.getEventEnds());
-            newEvent.setEventPicture(eventEntity.getEventPicture());
-            newEvent.setOrganizer(eventEntity.getOrganizer());
-        }catch (Exception e){
-            return null;
-        }finally {
-            return this.eventRepository.save(newEvent);
         }
+
+        if (eventEntity.getEventDescription() != null && !eventEntity.getEventDescription().isEmpty()) {
+            newEvent.setEventDescription(eventEntity.getEventDescription());
+        }
+
+        if (eventEntity.getEventStarts() != null) {
+            newEvent.setEventStarts(eventEntity.getEventStarts());
+        }
+
+        if (eventEntity.getEventEnds() != null) {
+            newEvent.setEventEnds(eventEntity.getEventEnds());
+        }
+
+        if (eventEntity.getEventPicture() != null && eventEntity.getEventPicture().length > 0) {
+            newEvent.setEventPicture(eventEntity.getEventPicture());
+        }
+
+        return this.eventRepository.save(newEvent);
+
+
     }
+
 
     public List<EventEntity> getEvents(){
         return this.eventRepository.findAll();
@@ -60,6 +84,11 @@ public class EventService {
 
     public byte[] getEventPicture(int id){
         return this.eventRepository.findById(id).get().getEventPicture();
+    }
+
+    public EventEntity getEventById(int id){
+        Optional<EventEntity> eventOptional = this.eventRepository.findById(id);
+        return eventOptional.orElse(null);
     }
 
 
