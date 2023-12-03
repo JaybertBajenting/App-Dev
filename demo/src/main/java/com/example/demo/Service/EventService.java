@@ -3,6 +3,7 @@ package com.example.demo.Service;
 import com.example.demo.Entity.EventEntity;
 import com.example.demo.Repository.EventRepository;
 import com.example.demo.Repository.UserRepository;
+import jdk.jfr.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,6 +67,11 @@ public class EventService {
             newEvent.setEventEnds(eventEntity.getEventEnds());
         }
 
+        if(eventEntity.getLocation() != null && !eventEntity.getLocation().isEmpty()){
+            newEvent.setLocation(eventEntity.getLocation());
+        }
+
+
         if (eventEntity.getEventPicture() != null && eventEntity.getEventPicture().length > 0) {
             newEvent.setEventPicture(eventEntity.getEventPicture());
         }
@@ -87,9 +93,10 @@ public class EventService {
     }
 
     public EventEntity getEventById(int id){
-        Optional<EventEntity> eventOptional = this.eventRepository.findById(id);
-        return eventOptional.orElse(null);
+        return this.eventRepository.findById(id).get();
     }
+
+
 
 
 

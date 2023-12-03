@@ -35,6 +35,11 @@ public class EventEntity {
     private Date eventEnds;
 
 
+    @Column(name = "event_Location")
+    private String location;
+
+
+
 
 
     @Lob
@@ -49,21 +54,23 @@ public class EventEntity {
 
 
 
-    public EventEntity(int id, String eventName, String eventDescription, Date eventStarts, Date eventEnds, byte[] eventPicture, int organizerId) {
+    public EventEntity(int id, String eventName, String eventDescription, Date eventStarts, Date eventEnds,String location, byte[] eventPicture, int organizerId) {
         this.id = id;
         this.eventName = eventName;
         this.eventDescription = eventDescription;
         this.eventStarts = eventStarts;
         this.eventEnds = eventEnds;
+        this.location = location;
         this.eventPicture = eventPicture;
         this.organizerId = organizerId;
     }
 
-    public EventEntity(String eventName, String eventDescription, Date eventStarts, Date eventEnds, byte[] eventPicture, int organizerId) {
+    public EventEntity(String eventName, String eventDescription, Date eventStarts, Date eventEnds,String location, byte[] eventPicture, int organizerId) {
         this.eventName = eventName;
         this.eventDescription = eventDescription;
         this.eventStarts = eventStarts;
         this.eventEnds = eventEnds;
+        this.location = location;
         this.eventPicture = eventPicture;
         this.organizerId = organizerId;
     }
@@ -72,6 +79,14 @@ public class EventEntity {
 
     }
 
+
+    public String getLocation(){
+        return this.location;
+    }
+
+    public void setLocation(String location){
+        this.location = location;
+    }
 
     public int getId() {
         return id;
