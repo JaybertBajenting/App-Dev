@@ -31,20 +31,20 @@ public class UserController {
 
 
 
-    @PostMapping("/createAccount")
+    @PostMapping("createAccount")
     public Student createAccount(@RequestBody Student student){
      return this.userService.makeAccount(student);
     }
 
 
-    @GetMapping("/getAccounts")
+    @GetMapping("getAccounts")
     public List<UserEntity> getAccounts() {
         return this.userService.getAccounts();
     }
 
 
 
-    @DeleteMapping("/deleteAccount/{id}")
+    @DeleteMapping("deleteAccount/{id}")
     public String deleteAccount(@PathVariable  int id){
         return this.userService.deleteUser(id);
     }

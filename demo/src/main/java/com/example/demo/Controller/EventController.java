@@ -30,7 +30,7 @@ public class EventController {
     }
 
 
-    @PutMapping("updateEvent")
+    @PutMapping("updateEvent/")
     public EventEntity updateEvent(@RequestParam("id") int id, @RequestBody EventEntity eventEntity){
         return this.eventService.updateEvent(id,eventEntity);
     }
