@@ -1,7 +1,10 @@
 package com.example.demo.Service;
 
 import com.example.demo.Classes.Student;
+import com.example.demo.Entity.EventHandlerEntity;
 import com.example.demo.Entity.UserEntity;
+import com.example.demo.Repository.EventHandlerRepository;
+import com.example.demo.Repository.EventRepository;
 import com.example.demo.Repository.UserRepository;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +23,14 @@ public class UserService {
 
 
     private final UserRepository userRepository;
+    private final EventHandlerRepository eventHandlerRepository;
+
 
 
     @Autowired
-    public UserService(UserRepository userRepository){
+    public UserService(UserRepository userRepository, EventHandlerRepository eventHandlerRepository){
         this.userRepository = userRepository;
+        this.eventHandlerRepository = eventHandlerRepository;
     }
 
 
@@ -41,6 +47,13 @@ public class UserService {
 
     public String deleteUser(int id){
             if(this.userRepository.existsById(id)){
+                List<EventHandlerEntity> eventHandlerEntities = this.eventHandlerRepository.findAll();
+                UserEntity user = this.userRepository.findById(id).get();
+                for(EventHandlerEntity entity:eventHandlerEntities){
+                    if(entity.getStudentId() == user.getId()){
+                        this.eventHandlerRepository.delete(entity);
+                    }
+                }
                 this.userRepository.deleteById(id);
                 return "Account has been Deleted";
             }

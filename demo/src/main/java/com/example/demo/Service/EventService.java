@@ -1,6 +1,9 @@
 package com.example.demo.Service;
 
 import com.example.demo.Entity.EventEntity;
+import com.example.demo.Entity.EventHandlerEntity;
+import com.example.demo.Entity.UserEntity;
+import com.example.demo.Repository.EventHandlerRepository;
 import com.example.demo.Repository.EventRepository;
 import com.example.demo.Repository.UserRepository;
 import jdk.jfr.Event;
@@ -19,13 +22,13 @@ public class EventService {
 
 
     private final EventRepository eventRepository;
-    private final UserRepository userRepository;
 
+    private final EventHandlerRepository eventHandlerRepository;
 
     @Autowired
-    public EventService(EventRepository eventRepository, UserRepository userRepository){
+    public EventService(EventRepository eventRepository, EventHandlerRepository eventHandlerRepository){
         this.eventRepository = eventRepository;
-        this.userRepository = userRepository;
+        this.eventHandlerRepository = eventHandlerRepository;
     }
 
 
@@ -35,10 +38,21 @@ public class EventService {
 
     public String deleteEvent(int id){
         if(this.eventRepository.existsById(id)){
+            List<EventHandlerEntity> eventHandlerEntities = this.eventHandlerRepository.findAll();
+            EventEntity event = this.eventRepository.findById(id).get();
+            for(EventHandlerEntity entity:eventHandlerEntities){
+                if(entity.getEventId() == event.getId()){
+                    this.eventHandlerRepository.delete(entity);
+                }
+            }
+
             this.eventRepository.deleteById(id);
-            return "Event has been deleted";
+            return "Event has been Deleted";
         }
-        return "Event not found!";
+
+        return "Event not Found";
+
+
     }
 
 

@@ -20,10 +20,19 @@ public class AdminController {
     }
 
 
-    @DeleteMapping("deleteUserById/{id}")
-    public String deleteUserById(@PathVariable  int id){
-        return this.adminService.deleteUserById(id);
+
+    @GetMapping("getAttendanceCount/")
+    public int getAttendanceCount(@RequestParam int eventId){
+        return this.adminService.getAttendanceCount(eventId);
     }
+
+
+
+    @GetMapping("getEventsJoinedCount/")
+    public int getEventsJoinedCount(@RequestParam int studentId){
+        return this.adminService.getEventsJoinedCount(studentId);
+    }
+
 
 
 
