@@ -9,6 +9,7 @@ import com.example.demo.Repository.UserRepository;
 import jdk.jfr.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -110,6 +111,18 @@ public class EventService {
         return this.eventRepository.findById(id).get();
     }
 
+
+
+    public void uploadPicture(int id, MultipartFile picture){
+        try{
+            EventEntity currentUser = this.eventRepository.findById(id).get();
+           currentUser.setEventPicture(picture.getBytes());
+            this.eventRepository.save(currentUser);
+            System.out.println("Successfully Uploaded a Picture");
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
 
 
 
