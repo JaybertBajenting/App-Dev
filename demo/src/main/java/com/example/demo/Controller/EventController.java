@@ -53,6 +53,8 @@ public class EventController {
     @GetMapping("getEventById/")
     public EventEntity getEventById(@RequestParam  int id){
         return this.eventService.getEventById(id);
+        // this will call the eventservice object with the function of getEventById
+        // naas ikatulo katong get event byid
     }
 
 

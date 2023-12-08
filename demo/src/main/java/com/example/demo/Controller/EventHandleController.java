@@ -40,11 +40,13 @@ public class EventHandleController {
     
 
 
-
     @PostMapping("joinEvent")
     public EventHandlerEntity joinEvent(@RequestBody EventHandlerEntity eventHandlerEntity){
         return this.eventHandlerService.joinEvent(eventHandlerEntity);
+        // The PostMapping annotation means that there will be a post request to the server
+        // The RequestBody Annotation means that the value will be passed is an object
     }
+
 
 
 
