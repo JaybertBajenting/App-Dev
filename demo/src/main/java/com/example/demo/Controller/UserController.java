@@ -70,8 +70,6 @@ public class UserController {
 
 
 
-
-
     @PostMapping("uploadPicture/")
     public void uploadPicture(@RequestParam("id") int id, @RequestParam("file") MultipartFile picture){
         this.userService.uploadPicture(id,picture);
@@ -103,6 +101,7 @@ public class UserController {
     public void updateUserRole(@RequestParam("id") int id, @RequestParam("userRole") String userRole)
     {
         this.userService.updateUserRole(id,userRole);
+
     }
 
 

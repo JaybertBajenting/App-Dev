@@ -48,8 +48,10 @@ public class EventController {
 
 
 
+
+
     @GetMapping("getEventById/")
-    public EventEntity getEventById(int id){
+    public EventEntity getEventById(@RequestParam  int id){
         return this.eventService.getEventById(id);
     }
 

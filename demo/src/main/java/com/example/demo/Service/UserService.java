@@ -54,6 +54,8 @@ public class UserService {
                         this.eventHandlerRepository.delete(entity);
                     }
                 }
+
+
                 this.userRepository.deleteById(id);
                 return "Account has been Deleted";
             }
