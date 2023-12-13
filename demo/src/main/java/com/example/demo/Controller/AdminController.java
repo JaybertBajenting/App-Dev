@@ -5,6 +5,8 @@ import com.example.demo.Service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+
 @RestController
 @RequestMapping("admin")
 @CrossOrigin(origins = "*")
@@ -36,8 +38,10 @@ public class AdminController {
 
 
 
-
-
+    @GetMapping("getAllData")
+    public String getAllData() throws IOException {
+        return this.adminService.getAllData();
+    }
 
 
 

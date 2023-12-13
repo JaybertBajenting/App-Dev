@@ -37,8 +37,6 @@ public class EventHandleController {
         return this.eventHandlerService.getEventsJoinedByStudentId(id);
     }
 
-    
-
 
 
     @PostMapping("joinEvent")
@@ -54,6 +52,8 @@ public class EventHandleController {
     public String withdrawEvent(@RequestBody EventHandlerEntity eventHandler){
         return this.eventHandlerService.withDrawEvent(eventHandler);
     }
+
+
 
 
 
