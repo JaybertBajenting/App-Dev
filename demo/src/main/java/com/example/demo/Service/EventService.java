@@ -108,7 +108,9 @@ public class EventService {
     }
 
     public EventEntity getEventById(int id){
-        return this.eventRepository.findById(id).get();
+        return this.eventRepository.findById(id).get();// This will find the event in the event repository based on the id that
+        // has been passed
+        //if naa bay event ang kana nga id
     }
 
 

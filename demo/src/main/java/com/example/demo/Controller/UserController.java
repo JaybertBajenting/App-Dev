@@ -17,7 +17,7 @@ import java.util.Map;
 @CrossOrigin(origins = "*")
 
 
-public class UserController {
+public class  UserController {
 
 
     private final UserService userService;

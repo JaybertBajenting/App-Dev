@@ -28,6 +28,9 @@ public class EventHandlerService {
 
     public EventHandlerEntity joinEvent(EventHandlerEntity eventHandlerEntity){
     return this.eventHandlerRepository.save(eventHandlerEntity);
+    // this works because when a student joins an event his/her student id will be passed alongside the event id in the parameters
+        // saving it to the database making it possible to see who joined the event
+
     }
 
 

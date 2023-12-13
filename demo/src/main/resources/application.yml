@@ -9,3 +9,5 @@ spring:
     hibernate:
       ddl-auto: update    # Automatic table creation/update strategy (e.g., create, update, none)
     show-sql: true        # Show SQL statements in logs for debugging (set to false in production)
+server:
+  port: 8081

@@ -16,6 +16,7 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
+<<<<<<< HEAD
 
 
 
@@ -32,4 +33,8 @@ public class DemoApplication {
 
 
 
+=======
+>>>>>>> d7ebe2b0c1d666eabaa3f68d9978c8c19f072671
 }
+
+
